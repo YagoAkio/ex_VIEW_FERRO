@@ -1,6 +1,6 @@
 const vapp = {
     data() {
-        return {estado: "", municipio: ""}
+        return {estado: "", municipio: "", referencia: ""}
     },
     mounted() {
         axios
@@ -32,7 +32,7 @@ const vapp = {
         },
         ceps(){
             axios
-            .get('https://viacep.com.br/ws/' + this.estado + '/' + this.municipio + '/Brasil/json/')
+            .get('https://viacep.com.br/ws/' + this.estado + '/' + this.municipio + '/'+ this.referencia +'/json/')
             .then((response) => { 
                 let table = document.getElementById('tabela');
                 table.innerHTML = `
@@ -61,7 +61,7 @@ const vapp = {
         <form>
             <select @change="add_municipio()" v-model="estado" id="estados_select"></select>
             <select @change="ceps()" v-model="municipio" id="municipios" ></select>
-            <input @change="ceps()" type="text" v-model="referencia" ><input>
+            <input @change="ceps()" type="text" v-model="referencia">
         </form>
         <br>
         <table id="tabela">
